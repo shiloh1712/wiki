@@ -1,0 +1,19 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    New Entry
+{% endblock %}
+
+{% block body %}
+    <h1>New page</h1>
+
+    <form action="{% url 'wiki:create' %}" method="POST">
+        {% csrf_token %}
+        {% if error_msg is not None %}
+            <p class="isa_error" style="color: #D8000C; background-color: #FFD2D2;">{{ error_msg }}</p>
+        {% endif %}
+        {{ new_page_form }}
+        <input type="submit" value="Create">
+    </form>
+
+{% endblock %}
